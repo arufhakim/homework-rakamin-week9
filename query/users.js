@@ -2,9 +2,10 @@ const pool = require('../connection/database.js');
 const bcrypt = require('bcrypt');
 
 const getUsers = (req, res) => {
-    const query = 'SELECT * FROM users LIMIT $1';
-    const limit = req.query.limit;
-    pool.query(query, [limit], (err, result) => {
+    const query = 'SELECT * FROM users LIMIT $1 OFFSET $2';
+    const limit = req.query.limit || 10;
+    const offset = req.query.offset || 0;
+    pool.query(query, [limit, offset], (err, result) => {
         if (err) throw new Error(err.message);
         res.status(200).json(result.rows).end();
     })

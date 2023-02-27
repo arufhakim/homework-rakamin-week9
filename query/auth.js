@@ -19,7 +19,7 @@ const register = (req, res) => {
 const login = (req, res) => {
     const { email, password } = req.body;
 
-    const getUserByEmail = `SELECT email, password FROM users WHERE email = $1`;
+    const getUserByEmail = `SELECT email, password, role FROM users WHERE email = $1`;
 
     pool.query(getUserByEmail, [email], (err, result) => {
         if (err) throw new Error(err.message);
@@ -28,7 +28,7 @@ const login = (req, res) => {
             bcrypt.compare(password, result.rows[0].password, (err, hashResult) => {
                 if (err) throw new Error(err.message);
                 if (hashResult) {
-                    const token = jwt.sign({ email, password }, 'code-sangat-rahasia', { expiresIn: '1h' });
+                    const token = jwt.sign({ email, password: result.rows[0].password, role: result.rows[0].role }, 'code-sangat-rahasia', { expiresIn: '1h' });
                     res.json({ token }).end();
                 } else {
                     res.send('Password salah!').end();
