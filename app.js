@@ -12,9 +12,7 @@ const auth = require('./router/auth');
 
 app.use(bodyParser.json());
 
-app.use(morgan('common', {
-    stream: fs.createWriteStream('./log.txt', { flags: 'a' })
-}));
+app.use(morgan('tiny'));
 
 app.get('/', (req, res) => {
     res.send('Welcome to Movies Database!').end();
