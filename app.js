@@ -1,9 +1,11 @@
 const express = require('express');
 const app = express();
 
+const swaggerUi = require('swagger-ui-express');
+const specs = require('./swagger.js');
+
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
-const fs = require('fs');
 
 // router
 const movies = require('./router/movies');
@@ -16,7 +18,9 @@ app.use(morgan('tiny'));
 
 app.get('/', (req, res) => {
     res.send('Welcome to Movies Database!').end();
-})
+});
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 
 app.use(movies);
 app.use(users);
