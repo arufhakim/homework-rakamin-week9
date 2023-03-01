@@ -19,7 +19,7 @@ const updateUsers = (req, res) => {
         if (err) throw new Error(err.message);
         pool.query(query, [email, gender, hash, role, req.params.id], (err, result) => {
             if (err) throw new Error(err.message);
-            res.status(200).send('Succesfully updated user!').end();
+            res.status(200).json({ message: 'Succesfully updated user!' }).end();
         });
 
     });
@@ -30,7 +30,7 @@ const deleteUsers = (req, res) => {
     const query = `DELETE FROM users WHERE id = $1`;
     pool.query(query, [id], (err, result) => {
         if (err) throw new Error(err.message);
-        res.status(200).send('Succesfully deleted user!').end();
+        res.status(200).json({ message: 'Succesfully deleted user!' }).end();
     });
 }
 

@@ -8,9 +8,17 @@ const options = {
             version: "1.0.0",
             description: "CRUD on table users & movies with Authentication & Authorization",
             contact: {
-                name : "Aruf Rachman Hakim",
-                email : "arufhakim@gmail.com"
-            } 
+                name: "Aruf Rachman Hakim",
+                email: "arufhakim@gmail.com"
+            }
+        },
+        securityDefinitions: {
+            bearerAuth: {
+                type: "apiKey",
+                name: "Authorization",
+                in: "header",
+                description: "JWT authorization token"
+            }
         },
         servers: [
             {

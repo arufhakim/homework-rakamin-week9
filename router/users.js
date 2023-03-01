@@ -103,7 +103,7 @@ const { getUsers, updateUsers, deleteUsers } = require('../query/users.js');
 users.get('/users', verify, getUsers);
 
 users.route('/users/:id')
-    .put(verify, updateUsers)
+    .put(verify, authorized, updateUsers)
     .delete(verify, authorized, deleteUsers);
 
 module.exports = users;

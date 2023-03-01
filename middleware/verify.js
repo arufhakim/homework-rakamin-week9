@@ -7,13 +7,13 @@ const verify = (req, res, next) => {
 
         jwt.verify(token, 'code-sangat-rahasia', (err, decoded) => {
             if (err) {
-                res.send('Unauthorized!').end();
+                res.status(401).json({ message: 'Unauthorized!' }).end();
             } else {
                 next();
             }
         });
     } catch (err) {
-        res.send('No token provided!').end();
+        res.status(401).json({ message: 'No token provided!' }).end();
     }
 };
 

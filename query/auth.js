@@ -11,7 +11,7 @@ const register = (req, res) => {
         if (err) throw new Error(err.message);
         pool.query(query, [id, email, gender, hash, role], (err, result) => {
             if (err) throw new Error(err.message);
-            res.status(200).send('Succesfully registered!').end();
+            res.status(200).json({ message: 'Succesfully registered!' }).end();
         });
     });
 }
@@ -31,11 +31,11 @@ const login = (req, res) => {
                     const token = jwt.sign({ email, password: result.rows[0].password, role: result.rows[0].role }, 'code-sangat-rahasia', { expiresIn: '1h' });
                     res.json({ token }).end();
                 } else {
-                    res.send('Password salah!').end();
+                    res.status(401).json({ message: 'Wrong Password!' }).end();
                 }
             })
         } else {
-            res.send('Email belum terdaftar!').end();
+            res.status(401).json({ message: 'Email is not registered!' }).end();
         }
     })
 }

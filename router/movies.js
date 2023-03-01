@@ -37,6 +37,8 @@ const { getMovies, createMovies, updateMovies, deleteMovies } = require('../quer
  * /movies:
  *   get:
  *     summary: Lists all the movies
+ *     security:
+ *       - bearerAuth: []
  *     tags: [Movies]
  *     responses:
  *       200:
