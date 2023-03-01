@@ -12,12 +12,12 @@ const getUsers = (req, res) => {
 };
 
 const updateUsers = (req, res) => {
-    const { email, gender, password, role, id } = req.body;
+    const { email, gender, password, role } = req.body;
     const query = `UPDATE users SET email = $1, gender = $2, password = $3, role = $4 WHERE id = $5`;
 
     bcrypt.hash(password, 10, (err, hash) => {
         if (err) throw new Error(err.message);
-        pool.query(query, [email, gender, hash, role, id], (err, result) => {
+        pool.query(query, [email, gender, hash, role, req.params.id], (err, result) => {
             if (err) throw new Error(err.message);
             res.status(200).send('Succesfully updated user!').end();
         });

@@ -40,4 +40,4 @@ const login = (req, res) => {
     })
 }
 
-module.exports = { register, login }
+module.exports = { register, login };
