@@ -51,6 +51,8 @@ const { getMovies, createMovies, updateMovies, deleteMovies } = require('../quer
  *                 $ref: '#/components/schemas/Movie'
  *   post:
  *     summary: Create a new movie
+ *     security:
+ *       - bearerAuth: []
  *     tags: [Movies]
  *     requestBody:
  *       required: true
@@ -71,6 +73,8 @@ const { getMovies, createMovies, updateMovies, deleteMovies } = require('../quer
  * /movies/{id}:
  *   put:
  *    summary: Update the movie by the id
+ *    security:
+ *       - bearerAuth: []
  *    tags: [Movies]
  *    parameters:
  *      - in: path
@@ -98,6 +102,8 @@ const { getMovies, createMovies, updateMovies, deleteMovies } = require('../quer
  *        description: Some error happened
  *   delete:
  *     summary: Remove the movie by id
+ *     security:
+ *       - bearerAuth: []
  *     tags: [Movies]
  *     parameters:
  *       - in: path

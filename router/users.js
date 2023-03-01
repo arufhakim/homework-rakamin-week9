@@ -43,6 +43,8 @@ const { getUsers, updateUsers, deleteUsers } = require('../query/users.js');
  * /users:
  *   get:
  *     summary: Lists all the users
+ *     security:
+ *       - bearerAuth: []
  *     tags: [Users]
  *     responses:
  *       200:
@@ -57,6 +59,8 @@ const { getUsers, updateUsers, deleteUsers } = require('../query/users.js');
  * /users/{id}:
  *   put:
  *    summary: Update the user by the id
+ *    security:
+ *       - bearerAuth: []
  *    tags: [Users]
  *    parameters:
  *      - in: path
@@ -84,6 +88,8 @@ const { getUsers, updateUsers, deleteUsers } = require('../query/users.js');
  *        description: Some error happened
  *   delete:
  *     summary: Remove the user by id
+ *     security:
+ *       - bearerAuth: []
  *     tags: [Users]
  *     parameters:
  *       - in: path
