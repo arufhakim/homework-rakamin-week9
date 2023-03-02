@@ -7,7 +7,7 @@ const getUsers = (req, res) => {
     const offset = req.query.offset || 0;
     pool.query(query, [limit, offset], (err, result) => {
         if (err) throw new Error(err.message);
-        res.status(200).json(result.rows).end();
+        res.status(200).json(result.rows);
     })
 };
 
@@ -24,11 +24,11 @@ const updateUsers = (req, res) => {
                 if (err) throw new Error(err.message);
                 pool.query(query, [email, gender, hash, role, id], (err, result) => {
                     if (err) throw new Error(err.message);
-                    res.status(200).json({ message: 'Succesfully updated user!' }).end();
+                    res.status(200).json({ message: 'Succesfully updated user!' });
                 });
             });
         } else {
-            res.status(404).json({ message: 'The user was not found!' }).end();
+            res.status(404).json({ message: 'The user was not found!' });
         }
     });
 }
@@ -43,10 +43,10 @@ const deleteUsers = (req, res) => {
             const query = `DELETE FROM users WHERE id = $1`;
             pool.query(query, [id], (err, result) => {
                 if (err) throw new Error(err.message);
-                res.status(200).json({ message: 'Succesfully deleted user!' }).end();
+                res.status(200).json({ message: 'Succesfully deleted user!' });
             });
         } else {
-            res.status(404).json({ message: 'The user was not found!' }).end();
+            res.status(404).json({ message: 'The user was not found!' });
         }
     });
 }

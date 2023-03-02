@@ -20,7 +20,7 @@ app.use(auth);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 
 app.use((req, res) => {
-    res.status(404).send('404 Not Found').end();
+    res.status(404).send('404 Not Found');
 });
 
 const port = 3000;

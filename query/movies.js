@@ -6,7 +6,7 @@ const getMovies = (req, res) => {
     const offset = req.query.offset || 0;
     pool.query(query, [limit, offset], (err, result) => {
         if (err) throw new Error(err.message);
-        res.status(200).json(result.rows).end();
+        res.status(200).json(result.rows);
     })
 };
 
@@ -15,7 +15,7 @@ const createMovies = (req, res) => {
     const query = `INSERT INTO movies (id, title, genres, year) VALUES ($1, $2, $3, $4)`;
     pool.query(query, [id, title, genres, year], (err, result) => {
         if (err) throw new Error(err.message);
-        res.status(200).json({ message: 'Succesfully created new movie!' }).end();
+        res.status(200).json({ message: 'Succesfully created new movie!' });
     });
 }
 
@@ -30,10 +30,10 @@ const updateMovies = (req, res) => {
             const query = `UPDATE movies SET title = $1, genres = $2, year =$3 WHERE id = $4`;
             pool.query(query, [title, genres, year, id], (err, result) => {
                 if (err) throw new Error(err.message);
-                res.status(200).json({ message: 'Succesfully updated movie!' }).end();
+                res.status(200).json({ message: 'Succesfully updated movie!' });
             })
         } else {
-            res.status(404).json({ message: 'The movie was not found!' }).end();
+            res.status(404).json({ message: 'The movie was not found!' });
         }
     });
 }
@@ -48,10 +48,10 @@ const deleteMovies = (req, res) => {
             const query = `DELETE FROM movies WHERE id = $1`;
             pool.query(query, [id], (err, result) => {
                 if (err) throw new Error(err.message);
-                res.status(200).json({ message: 'Succesfully deleted movie!' }).end();
+                res.status(200).json({ message: 'Succesfully deleted movie!' });
             })
         } else {
-            res.status(404).json({ message: 'The movie was not found!' }).end();
+            res.status(404).json({ message: 'The movie was not found!' });
         }
     });
 }
