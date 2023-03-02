@@ -77,13 +77,13 @@ const { getUsers, updateUsers, deleteUsers } = require('../query/users.js');
  *            $ref: '#/components/schemas/User'
  *    responses:
  *      200:
- *        description: The user was updated
+ *        description: Succesfully updated user!
  *        content:
  *          application/json:
  *            schema:
  *              $ref: '#/components/schemas/User'
  *      404:
- *        description: The user was not found
+ *        description: The user was not found!
  *      500:
  *        description: Some error happened
  *   delete:
@@ -101,9 +101,9 @@ const { getUsers, updateUsers, deleteUsers } = require('../query/users.js');
  *
  *     responses:
  *       200:
- *         description: The user was deleted
+ *         description: Succesfully deleted user!
  *       404:
- *         description: The user was not found
+ *         description: The user was not found!
  */
 
 users.get('/users', verify, getUsers);

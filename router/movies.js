@@ -23,10 +23,10 @@ const { getMovies, createMovies, updateMovies, deleteMovies } = require('../quer
  *           type: string
  *           description: year of the movie
  *       example:
- *         id: 1
- *         title: Reckless
- *         genres: Comedy|Drama|Romance
- *         year: 2001
+ *         id: 110
+ *         title: The Last of Us
+ *         genres: Adventure|Action|Horror
+ *         year: 2023
  */
 
 /**
@@ -42,7 +42,7 @@ const { getMovies, createMovies, updateMovies, deleteMovies } = require('../quer
  *     tags: [Movies]
  *     responses:
  *       200:
- *         description: The list of the books
+ *         description: The list of the movies
  *         content:
  *           application/json:
  *             schema:
@@ -62,7 +62,7 @@ const { getMovies, createMovies, updateMovies, deleteMovies } = require('../quer
  *             $ref: '#/components/schemas/Movie'
  *     responses:
  *       200:
- *         description: The created movies.
+ *         description: Succesfully created new movie!.
  *         content:
  *           application/json:
  *             schema:
@@ -91,13 +91,13 @@ const { getMovies, createMovies, updateMovies, deleteMovies } = require('../quer
  *            $ref: '#/components/schemas/Movie'
  *    responses:
  *      200:
- *        description: The movie was updated
+ *        description: Succesfully updated movie!
  *        content:
  *          application/json:
  *            schema:
  *              $ref: '#/components/schemas/Movie'
  *      404:
- *        description: The movie was not found
+ *        description: The movie was not found!
  *      500:
  *        description: Some error happened
  *   delete:
@@ -115,9 +115,9 @@ const { getMovies, createMovies, updateMovies, deleteMovies } = require('../quer
  *
  *     responses:
  *       200:
- *         description: The movie was deleted
+ *         description: Succesfully deleted movie!
  *       404:
- *         description: The movie was not found
+ *         description: The movie was not found!
  */
 
 movies.route('/movies')

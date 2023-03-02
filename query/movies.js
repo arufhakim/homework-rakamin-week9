@@ -22,20 +22,38 @@ const createMovies = (req, res) => {
 const updateMovies = (req, res) => {
     const { title, genres, year } = req.body;
     const id = parseInt(req.params.id);
-    const query = `UPDATE movies SET title = $1, genres = $2, year =$3 WHERE id = $4`;
-    pool.query(query, [title, genres, year, id], (err, result) => {
+
+    const getMoviebyId = `SELECT id FROM movies WHERE id = $1`;
+    pool.query(getMoviebyId, [id], (err, getResult) => {
         if (err) throw new Error(err.message);
-        res.status(200).json({ message: 'Succesfully updated movie!' }).end();
-    })
+        if (getResult.rows.length > 0) {
+            const query = `UPDATE movies SET title = $1, genres = $2, year =$3 WHERE id = $4`;
+            pool.query(query, [title, genres, year, id], (err, result) => {
+                if (err) throw new Error(err.message);
+                res.status(200).json({ message: 'Succesfully updated movie!' }).end();
+            })
+        } else {
+            res.status(404).json({ message: 'The movie was not found!' }).end();
+        }
+    });
 }
 
 const deleteMovies = (req, res) => {
     const id = parseInt(req.params.id);
-    const query = `DELETE FROM movies WHERE id = $1`;
-    pool.query(query, [id], (err, result) => {
+
+    const getMoviebyId = `SELECT id FROM movies WHERE id = $1`;
+    pool.query(getMoviebyId, [id], (err, getResult) => {
         if (err) throw new Error(err.message);
-        res.status(200).json({ message: 'Succesfully deleted movie!' }).end();
-    })
+        if (getResult.rows.length > 0) {
+            const query = `DELETE FROM movies WHERE id = $1`;
+            pool.query(query, [id], (err, result) => {
+                if (err) throw new Error(err.message);
+                res.status(200).json({ message: 'Succesfully deleted movie!' }).end();
+            })
+        } else {
+            res.status(404).json({ message: 'The movie was not found!' }).end();
+        }
+    });
 }
 
 module.exports = { getMovies, createMovies, updateMovies, deleteMovies };
