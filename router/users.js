@@ -66,7 +66,7 @@ const { getUsers, updateUsers, deleteUsers } = require('../query/users.js');
  *      - in: path
  *        name: id
  *        schema:
- *          type: int
+ *          type: integer
  *        required: true
  *        description: The user id
  *    requestBody:
@@ -74,14 +74,11 @@ const { getUsers, updateUsers, deleteUsers } = require('../query/users.js');
  *      content:
  *        application/json:
  *          schema:
- *            $ref: '#/components/schemas/User'
+ *            type: string
+ *            example: {email: arufhakim@gmail.com, gender: Male, password: root, role: Supervisor}
  *    responses:
  *      200:
  *        description: Succesfully updated user!
- *        content:
- *          application/json:
- *            schema:
- *              $ref: '#/components/schemas/User'
  *      404:
  *        description: The user was not found!
  *      500:
@@ -95,10 +92,9 @@ const { getUsers, updateUsers, deleteUsers } = require('../query/users.js');
  *       - in: path
  *         name: id
  *         schema:
- *           type: int
+ *           type: integer
  *         required: true
  *         description: The user id
- *
  *     responses:
  *       200:
  *         description: Succesfully deleted user!

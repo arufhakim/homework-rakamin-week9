@@ -63,10 +63,6 @@ const { getMovies, createMovies, updateMovies, deleteMovies } = require('../quer
  *     responses:
  *       200:
  *         description: Succesfully created new movie!.
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/Movie'
  *       500:
  *         description: Some server error
  * 
@@ -80,7 +76,7 @@ const { getMovies, createMovies, updateMovies, deleteMovies } = require('../quer
  *      - in: path
  *        name: id
  *        schema:
- *          type: int
+ *          type: integer
  *        required: true
  *        description: The movie id
  *    requestBody:
@@ -88,14 +84,11 @@ const { getMovies, createMovies, updateMovies, deleteMovies } = require('../quer
  *      content:
  *        application/json:
  *          schema:
- *            $ref: '#/components/schemas/Movie'
+ *            type: string
+ *            example: {title: The Last of Us, genres: Adventure|Action|Horror, year: 2023}
  *    responses:
  *      200:
  *        description: Succesfully updated movie!
- *        content:
- *          application/json:
- *            schema:
- *              $ref: '#/components/schemas/Movie'
  *      404:
  *        description: The movie was not found!
  *      500:
@@ -109,10 +102,9 @@ const { getMovies, createMovies, updateMovies, deleteMovies } = require('../quer
  *       - in: path
  *         name: id
  *         schema:
- *           type: int
+ *           type: integer
  *         required: true
  *         description: The movie id
- *
  *     responses:
  *       200:
  *         description: Succesfully deleted movie!

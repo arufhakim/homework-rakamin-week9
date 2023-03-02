@@ -17,11 +17,7 @@ const { register, login } = require('../query/auth.js');
  *             $ref: '#/components/schemas/User'
  *     responses:
  *       200:
- *         description: The created user.
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/User'
+ *         description: Succesfully registered!
  *       500:
  *         description: Some server error
  * /login:
@@ -33,14 +29,16 @@ const { register, login } = require('../query/auth.js');
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/User'
+ *             type: string
+ *             example: {email: arufhakim@gmail.com, password: root}
  *     responses:
  *       200:
  *         description: Login.
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/User'
+ *              type: string
+ *              example: {token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9}
  *       500:
  *         description: Some server error
  * 
