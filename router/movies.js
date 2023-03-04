@@ -1,7 +1,7 @@
 const express = require('express');
 const movies = express.Router();
 const verify = require('../middleware/verify.js');
-const { getMovies, createMovies, updateMovies, deleteMovies } = require('../query/movies.js');
+const { getMovies, getMovieById, createMovies, updateMovies, deleteMovies } = require('../query/movies.js');
 
 /**
  * @swagger
@@ -65,6 +65,28 @@ const { getMovies, createMovies, updateMovies, deleteMovies } = require('../quer
  *         description: Succesfully created new movie!.
  * 
  * /movies/{id}:
+ *   get:
+ *    summary: Retrieve the movie by the id
+ *    security:
+ *       - bearerAuth: []
+ *    tags: [Movies]
+ *    parameters:
+ *      - in: path
+ *        name: id
+ *        schema:
+ *          type: integer
+ *        required: true
+ *        description: The movie id
+ *    responses:
+ *      200:
+ *        content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Movie'
+ *      404:
+ *        description: The movie was not found!
  *   put:
  *    summary: Update the movie by the id
  *    security:
@@ -113,6 +135,7 @@ movies.route('/movies')
     .post(verify, createMovies);
 
 movies.route('/movies/:id')
+    .get(verify, getMovieById)
     .put(verify, updateMovies)
     .delete(verify, deleteMovies);
 

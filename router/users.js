@@ -3,7 +3,7 @@ const users = express.Router();
 const verify = require('../middleware/verify.js');
 const authorized = require('../middleware/authorized.js');
 
-const { getUsers, updateUsers, deleteUsers } = require('../query/users.js');
+const { getUsers, getUserById, updateUsers, deleteUsers } = require('../query/users.js');
 
 /**
  * @swagger
@@ -57,6 +57,27 @@ const { getUsers, updateUsers, deleteUsers } = require('../query/users.js');
  *                 $ref: '#/components/schemas/User'
  * 
  * /users/{id}:
+ *   get:
+ *    summary: Retrieve the user by the id
+ *    security:
+ *       - bearerAuth: []
+ *    tags: [Users]
+ *    parameters:
+ *      - in: path
+ *        name: id
+ *        schema:
+ *          type: integer
+ *        required: true
+ *        description: The user id
+ *    responses:
+ *      200:
+ *        content:
+ *           application/json:
+ *             schema:
+ *               type: string
+ *               example: {id: 1, email: arufhakim@gmail.com, gender: Male, role: Supervisor}
+ *      404:
+ *        description: The user was not found!
  *   put:
  *    summary: Update the user by the id
  *    security:
@@ -103,6 +124,7 @@ const { getUsers, updateUsers, deleteUsers } = require('../query/users.js');
 users.get('/users', verify, getUsers);
 
 users.route('/users/:id')
+    .get(verify, getUserById)
     .put(verify, authorized, updateUsers)
     .delete(verify, authorized, deleteUsers);
 

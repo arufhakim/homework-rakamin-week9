@@ -11,6 +11,19 @@ const getUsers = (req, res) => {
     })
 };
 
+const getUserById = (req, res) => {
+    const id = parseInt(req.params.id);
+    const query = `SELECT id, email, gender, role FROM users WHERE id = $1`;
+    pool.query(query, [id], (err, result) => {
+        if (err) throw new Error(err.message);
+        if (result.rows.length > 0) {
+            res.status(200).json(result.rows);
+        } else {
+            res.status(404).json({ message: 'The user was not found!' });
+        }
+    });
+}
+
 const updateUsers = (req, res) => {
     const { email, gender, password, role } = req.body;
     const id = parseInt(req.params.id);
@@ -51,7 +64,7 @@ const deleteUsers = (req, res) => {
     });
 }
 
-module.exports = { getUsers, updateUsers, deleteUsers };
+module.exports = { getUsers, getUserById, updateUsers, deleteUsers };
 
 
 

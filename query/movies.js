@@ -7,8 +7,21 @@ const getMovies = (req, res) => {
     pool.query(query, [limit, (page - 1) * limit], (err, result) => {
         if (err) throw new Error(err.message);
         res.status(200).json(result.rows);
-    })
+    });
 };
+
+const getMovieById = (req, res) => {
+    const id = parseInt(req.params.id);
+    const query = `SELECT * FROM movies WHERE id = $1`;
+    pool.query(query, [id], (err, result) => {
+        if (err) throw new Error(err.message);
+        if (result.rows.length > 0) {
+            res.status(200).json(result.rows);
+        } else {
+            res.status(404).json({ message: 'The movie was not found!' });
+        }
+    });
+}
 
 const createMovies = (req, res) => {
     const { id, title, genres, year } = req.body;
@@ -56,6 +69,6 @@ const deleteMovies = (req, res) => {
     });
 }
 
-module.exports = { getMovies, createMovies, updateMovies, deleteMovies };
+module.exports = { getMovies, getMovieById, createMovies, updateMovies, deleteMovies };
 
 
