@@ -4,8 +4,8 @@ const bcrypt = require('bcrypt');
 const getUsers = (req, res) => {
     const query = 'SELECT * FROM users LIMIT $1 OFFSET $2';
     const limit = req.query.limit || 10;
-    const offset = req.query.offset || 0;
-    pool.query(query, [limit, offset], (err, result) => {
+    const page = req.query.page || 1;
+    pool.query(query, [limit, (page - 1) * limit], (err, result) => {
         if (err) throw new Error(err.message);
         res.status(200).json(result.rows);
     })

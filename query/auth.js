@@ -28,7 +28,7 @@ const login = (req, res) => {
             bcrypt.compare(password, result.rows[0].password, (err, hashResult) => {
                 if (err) throw new Error(err.message);
                 if (hashResult) {
-                    const token = jwt.sign({ email, password: result.rows[0].password, role: result.rows[0].role }, 'code-sangat-rahasia', { expiresIn: '1h' });
+                    const token = jwt.sign({ email, role: result.rows[0].role }, 'code-sangat-rahasia', { expiresIn: '1h' });
                     res.json({ token });
                 } else {
                     res.status(401).json({ message: 'Wrong Password!' });

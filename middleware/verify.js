@@ -9,6 +9,7 @@ const verify = (req, res, next) => {
             if (err) {
                 res.status(401).json({ message: 'Unauthorized!' });
             } else {
+                req.userLogged = { email: decoded.email, role: decoded.role };
                 next();
             }
         });
