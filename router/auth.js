@@ -18,8 +18,6 @@ const { register, login } = require('../query/auth.js');
  *     responses:
  *       200:
  *         description: Succesfully registered!
- *       500:
- *         description: Some server error
  * /login:
  *   post:
  *     summary: Login
@@ -39,8 +37,6 @@ const { register, login } = require('../query/auth.js');
  *             schema:
  *              type: string
  *              example: {token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9}
- *       500:
- *         description: Some server error
  * 
  */
 

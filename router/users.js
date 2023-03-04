@@ -81,8 +81,6 @@ const { getUsers, updateUsers, deleteUsers } = require('../query/users.js');
  *        description: Succesfully updated user!
  *      404:
  *        description: The user was not found!
- *      500:
- *        description: Some error happened
  *   delete:
  *     summary: Remove the user by id
  *     security:

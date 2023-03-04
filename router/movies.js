@@ -63,8 +63,6 @@ const { getMovies, createMovies, updateMovies, deleteMovies } = require('../quer
  *     responses:
  *       200:
  *         description: Succesfully created new movie!.
- *       500:
- *         description: Some server error
  * 
  * /movies/{id}:
  *   put:
@@ -91,8 +89,6 @@ const { getMovies, createMovies, updateMovies, deleteMovies } = require('../quer
  *        description: Succesfully updated movie!
  *      404:
  *        description: The movie was not found!
- *      500:
- *        description: Some error happened
  *   delete:
  *     summary: Remove the movie by id
  *     security:
